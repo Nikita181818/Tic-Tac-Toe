@@ -30,43 +30,87 @@
   <div id="result"></div> <!-- This is where the winner or draw message will appear -->
 
   <script>
+    // let currentplayer = "X";
+    // let array = Array(9).fill(null);
+
+    // function checkWinner() {
+    //   if (
+    //     (array[0] !== null && array[0] == array[1] && array[1] == array[2]) ||
+    //     (array[3] !== null && array[3] == array[4] && array[4] == array[5]) ||
+    //     (array[6] !== null && array[6] == array[7] && array[7] == array[8]) ||
+    //     (array[0] !== null && array[0] == array[4] && array[4] == array[8]) ||
+    //     (array[2] !== null && array[2] == array[4] && array[4] == array[6]) ||
+    //     (array[0] !== null && array[0] == array[3] && array[3] == array[6]) ||
+    //     (array[2] !== null && array[2] == array[5] && array[5] == array[8]) ||
+    //     (array[1] !== null && array[1] == array[4] && array[4] == array[7])
+    //   ) {
+    //     document.getElementById('result').innerText = `Winner is ${currentplayer}`;
+    //     return;
+    //   }
+
+    //   if (!array.some((e) => e === null)) {
+    //     document.getElementById('result').innerText = `Draw!!`;
+    //     return;
+    //   }
+    // }
+
+    // function handleclick(el) {
+    //   const id = Number(el.id);
+    //   if (array[id] !== null) return;
+    //   array[id] = currentplayer;
+    //   el.innerText = currentplayer;
+      
+    //   checkWinner();
+      
+    //   // Switch players
+    //   currentplayer = currentplayer === 'X' ? 'O' : 'X';
+      
+    //   console.log(array);
+    // }
     let currentplayer = "X";
-    let array = Array(9).fill(null);
+let array = Array(9).fill(null);
+let gameOver = false; // Flag to track if the game is over
 
-    function checkWinner() {
-      if (
-        (array[0] !== null && array[0] == array[1] && array[1] == array[2]) ||
-        (array[3] !== null && array[3] == array[4] && array[4] == array[5]) ||
-        (array[6] !== null && array[6] == array[7] && array[7] == array[8]) ||
-        (array[0] !== null && array[0] == array[4] && array[4] == array[8]) ||
-        (array[2] !== null && array[2] == array[4] && array[4] == array[6]) ||
-        (array[0] !== null && array[0] == array[3] && array[3] == array[6]) ||
-        (array[2] !== null && array[2] == array[5] && array[5] == array[8]) ||
-        (array[1] !== null && array[1] == array[4] && array[4] == array[7])
-      ) {
-        document.getElementById('result').innerText = `Winner is ${currentplayer}`;
-        return;
-      }
+function checkWinner() {
+  if (
+    (array[0] !== null && array[0] == array[1] && array[1] == array[2]) ||
+    (array[3] !== null && array[3] == array[4] && array[4] == array[5]) ||
+    (array[6] !== null && array[6] == array[7] && array[7] == array[8]) ||
+    (array[0] !== null && array[0] == array[4] && array[4] == array[8]) ||
+    (array[2] !== null && array[2] == array[4] && array[4] == array[6]) ||
+    (array[0] !== null && array[0] == array[3] && array[3] == array[6]) ||
+    (array[2] !== null && array[2] == array[5] && array[5] == array[8]) ||
+    (array[1] !== null && array[1] == array[4] && array[4] == array[7])
+  ) {
+    document.getElementById('result').innerText = `Winner is ${currentplayer}`;
+    gameOver = true; // Set the game over flag to true
+    return;
+  }
 
-      if (!array.some((e) => e === null)) {
-        document.getElementById('result').innerText = `Draw!!`;
-        return;
-      }
-    }
+  if (!array.some((e) => e === null)) {
+    document.getElementById('result').innerText = `Draw!!`;
+    gameOver = true; // Set the game over flag to true
+    return;
+  }
+}
 
-    function handleclick(el) {
-      const id = Number(el.id);
-      if (array[id] !== null) return;
-      array[id] = currentplayer;
-      el.innerText = currentplayer;
-      
-      checkWinner();
-      
-      // Switch players
-      currentplayer = currentplayer === 'X' ? 'O' : 'X';
-      
-      console.log(array);
-    }
+function handleclick(el) {
+  if (gameOver) return; // If the game is over, prevent any further clicks
+  
+  const id = Number(el.id);
+  if (array[id] !== null) return; // If the cell is already filled, prevent further clicks
+
+  array[id] = currentplayer;
+  el.innerText = currentplayer;
+  
+  checkWinner();
+  
+  // Switch players
+  currentplayer = currentplayer === 'X' ? 'O' : 'X';
+  
+  console.log(array);
+}
+
   </script>
 
 </body>
