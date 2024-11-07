@@ -1,0 +1,154 @@
+/* Style for the game header */
+.game-header {
+    text-align: center;
+    margin: 40px 0;
+    color: #fff;
+    background: linear-gradient(45deg, #ff8a00, #e52e71); /* Gradient background */
+    padding: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-header h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 3.5em;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    margin: 0;
+}
+
+/* Style for the body to center content vertically and horizontally */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f3f4f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Style for the board */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    justify-content: center;
+    margin-top: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+/* Style for each cell */
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    border: 2px solid #ddd;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Hover effect for the cells with vibrant colors */
+.cell:hover {
+    background-color: #ffdd57; /* Bright yellow on hover */
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 221, 87, 0.7); /* Glow effect */
+}
+
+/* Active click effect */
+.cell:active {
+    transform: scale(1.05);
+}
+
+/* Random colors for X and O */
+.cell.X {
+    color: #f44336; /* Red for X */
+}
+
+.cell.O {
+    color: #4caf50; /* Green for O */
+}
+
+/* Winner line effect */
+.winner {
+    color: #2196f3; /* Blue for winning player */
+    text-shadow: 0 0 12px rgba(33, 150, 243, 0.6);
+}
+
+/* Result text styling */
+#result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: #ffeb3b;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Glow effect when a player wins or it's a draw */
+#result.winner {
+    background-color: #4caf50;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
+}
+
+#result.draw {
+    background-color: #f44336;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.8);
+}
+
+/* Responsive Layout for smaller screens */
+@media (max-width: 600px) {
+    .board {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+        gap: 3px;
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 2em;
+    }
+
+    .game-header h1 {
+        font-size: 2.5em;
+    }
+
+    #result {
+        font-size: 1.2em;
+    }
+}
+
+/* Additional effects for when the board is reset */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#result {
+    animation: fadeIn 0.5s ease-out;
+}

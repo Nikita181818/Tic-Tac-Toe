@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tic-Tac-Toe</title>
+</head>
+<body>
+
+  <!-- Tic Tac Toe Header -->
+  <div class="game-header">
+    <h1>Tic-Tac-Toe</h1>
+  </div>
+
+  <!-- Game Board -->
+  <div class="board">
+    <div id="0" class="cell" onclick="handleclick(this)"></div>
+    <div id="1" class="cell" onclick="handleclick(this)"></div>
+    <div id="2" class="cell" onclick="handleclick(this)"></div>
+    <div id="3" class="cell" onclick="handleclick(this)"></div>
+    <div id="4" class="cell" onclick="handleclick(this)"></div>
+    <div id="5" class="cell" onclick="handleclick(this)"></div>
+    <div id="6" class="cell" onclick="handleclick(this)"></div>
+    <div id="7" class="cell" onclick="handleclick(this)"></div>
+    <div id="8" class="cell" onclick="handleclick(this)"></div>
+  </div>
+
+  <!-- Result Display -->
+  <div id="result"></div> <!-- This is where the winner or draw message will appear -->
+
+  <script>
+    let currentplayer = "X";
+    let array = Array(9).fill(null);
+
+    function checkWinner() {
+      if (
+        (array[0] !== null && array[0] == array[1] && array[1] == array[2]) ||
+        (array[3] !== null && array[3] == array[4] && array[4] == array[5]) ||
+        (array[6] !== null && array[6] == array[7] && array[7] == array[8]) ||
+        (array[0] !== null && array[0] == array[4] && array[4] == array[8]) ||
+        (array[2] !== null && array[2] == array[4] && array[4] == array[6]) ||
+        (array[0] !== null && array[0] == array[3] && array[3] == array[6]) ||
+        (array[2] !== null && array[2] == array[5] && array[5] == array[8]) ||
+        (array[1] !== null && array[1] == array[4] && array[4] == array[7])
+      ) {
+        document.getElementById('result').innerText = `Winner is ${currentplayer}`;
+        return;
+      }
+
+      if (!array.some((e) => e === null)) {
+        document.getElementById('result').innerText = `Draw!!`;
+        return;
+      }
+    }
+
+    function handleclick(el) {
+      const id = Number(el.id);
+      if (array[id] !== null) return;
+      array[id] = currentplayer;
+      el.innerText = currentplayer;
+      
+      checkWinner();
+      
+      // Switch players
+      currentplayer = currentplayer === 'X' ? 'O' : 'X';
+      
+      console.log(array);
+    }
+  </script>
+
+</body>
+</html>
